@@ -1,22 +1,26 @@
 var MongoClient = require('mongodb').MongoClient;
 
 // Connection URL
-var connect = function (cb) {
+var connect = function () {
   var url = 'mongodb://localhost:27017/people-nl';
-  MongoClient.connect(url, function(err, db) {
-    cb(err, db);
-  });
+  return MongoClient.connect(url);
 };
 
-exports.getArticle = function(url, cb) {
-  connect(function(err, db){
-    if (err) {
-      return cb(err);
-    }
-    var col = db.collection('articles');
-    col.findOne({url: url}, function(err, article) {
-      cb(err, article);
+exports.getArticle = function(url) {
+  return new Promise((resolve, reject) => {
+      connect()
+        .then(function (db) {
+          db.collection('articles')
+            .findOne({url: url})
+            .then(article => {
+              resolve(article);
+            })
+            .catch(err => {
+              reject (err);
+            });
+        })
+        .catch(function (err) {
+          reject(err);
+        });
     });
-  });
-
 };
