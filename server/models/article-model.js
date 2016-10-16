@@ -15,5 +15,4 @@ exports.getArticle = function(url) {
           return err;
         });
     });
-
 };
