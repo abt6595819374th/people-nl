@@ -9,3 +9,14 @@
 
     $ cd server
     $ nodemon index
+    
+    
+## FE app
+1. Install angular cli globally
+
+    $ npm install -g angular-cli
+
+2. Start FE dev server
+
+    $ cd client
+    $ ng serve
