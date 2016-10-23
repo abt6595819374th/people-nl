@@ -19,4 +19,4 @@
 2. Start FE dev server
 
     $ cd client
-    $ ng serve
+    $ npm start
