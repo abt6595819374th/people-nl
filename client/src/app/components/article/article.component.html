@@ -1,0 +1,9 @@
+<div *ngIf="article">
+  <h1>
+    {{article.title}}
+  </h1>
+  <div>
+    {{article.author}}
+  </div>
+  <div [innerHTML]="article.text"></div>
+</div>
