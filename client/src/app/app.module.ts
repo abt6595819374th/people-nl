@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import {ArticleService} from "./services/article.service";
+import { ArticleService } from './services/article.service';
 import { ArticleComponent } from './components/article/article.component';
-import { RouterModule } from "@angular/router";
+import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 
 @NgModule({

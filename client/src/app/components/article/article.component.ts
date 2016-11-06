@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
-import { ArticleService } from "../../services/article.service";
-import { Article } from "../../models/article.model";
-import { Params, ActivatedRoute } from "@angular/router";
+import { ArticleService } from '../../services/article.service';
+import { Article } from '../../models/article.model';
+import { Params, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article',
@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(url)
       .subscribe((response: Response) => {
         this.article = response.json();
-      })
+      });
   }
 
 }

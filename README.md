@@ -9,6 +9,11 @@
 
     $ cd server
     $ nodemon index
+
+3. Run unit tests
+
+    $ cd server
+    $ npm run test
     
     
 ## FE app
@@ -20,3 +25,13 @@
 
     $ cd client
     $ npm start
+
+3. Run unit tests
+
+    $ cd client
+    $ ng test
+
+4. Lint
+
+    $ cd client
+    $ ng lint
