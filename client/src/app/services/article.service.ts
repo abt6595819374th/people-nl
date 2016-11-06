@@ -4,11 +4,11 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class ArticleService {
-  private articleUrl = '/api/article/cow-says';  // URL to web API
+  private apiAddress = '/api/article/';  // URL to web API
 
   constructor (private http: Http) {}
   getArticle (articleUrl: String): Observable<Object> {
-    return this.http.get(this.articleUrl);
+    return this.http.get(this.apiAddress + articleUrl);
       /*.map(this.extractData)
       .catch(this.handleError);*/
   }
