@@ -28,6 +28,7 @@ export class ArticleComponent implements OnInit {
       .subscribe((response: Response) => {
         this.article = response.json();
       });
+    // TODO: if request fails show error
   }
 
 }

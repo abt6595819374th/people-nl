@@ -1,17 +1,20 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { ArticleComponent } from './article.component';
 import { ArticleService } from '../../services/article.service';
-import { Http, BaseRequestOptions } from '@angular/http';
+import { Http, BaseRequestOptions, ResponseOptions, Response } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Article } from '../../models/article.model';
+
 
 describe('ArticleComponent', () => {
   let component: ArticleComponent;
   let fixture: ComponentFixture<ArticleComponent>;
+  let mockArticle: Article = new Article();
+  mockArticle.title = 'Cow';
+  mockArticle.text = 'mooo';
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,13 +26,26 @@ describe('ArticleComponent', () => {
         {
           provide: Http,
           useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+            backendInstance.connections.subscribe( c => {
+              if (c.request.url === '/api/article/cow-says') {
+                let res = new Response( new ResponseOptions({
+                  body: JSON.stringify(mockArticle)
+                }));
+
+                c.mockRespond(res);
+              }
+            });
+
             return new Http(backendInstance, defaultOptions);
           },
           deps: [MockBackend, BaseRequestOptions]
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: Observable.from([{ url: 'cow-says' }])
+          }
         }
-      ],
-      imports: [
-        RouterTestingModule.withRoutes([])
       ]
     })
     .compileComponents();
@@ -41,7 +57,26 @@ describe('ArticleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should instantiate without errors', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('ngOnInit()', function () {
+    it('should load article on initialization', function () {
+      expect(component.article.title).toBe('Cow');
+      expect(component.article.text).toBe('mooo');
+    });
+
+    it('should render title in a h1 tag', async(() => {
+      fixture.detectChanges();
+      let compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('h1').textContent).toContain('Cow');
+    }));
+
+    it('should render article content in a .text div', async(() => {
+      fixture.detectChanges();
+      let compiled = fixture.debugElement.nativeElement;
+      expect(compiled.querySelector('.text').textContent).toContain('mooo');
+    }));
   });
 });
