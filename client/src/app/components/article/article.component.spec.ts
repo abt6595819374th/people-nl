@@ -62,21 +62,30 @@ describe('ArticleComponent', () => {
   });
 
   describe('ngOnInit()', function () {
-    it('should load article on initialization', function () {
-      expect(component.article.title).toBe('Cow');
-      expect(component.article.text).toBe('mooo');
+    it('should load article on initialization', (done) => {
+      fixture.whenStable().then(() => {
+        expect(component.article.title).toBe('Cow');
+        expect(component.article.text).toBe('mooo');
+        done();
+      });
     });
 
-    it('should render title in a h1 tag', async(() => {
-      fixture.detectChanges();
-      let compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('h1').textContent).toContain('Cow');
-    }));
+    it('should render title in a h1 tag', (done) => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('h1').textContent).toContain('Cow');
+        done();
+      });
+    });
 
-    it('should render article content in a .text div', async(() => {
-      fixture.detectChanges();
-      let compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.text').textContent).toContain('mooo');
-    }));
+    it('should render article content in a .text div', (done) => {
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        let compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('.text').textContent).toContain('mooo');
+        done();
+      });
+    });
   });
 });

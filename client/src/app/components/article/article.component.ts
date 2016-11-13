@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Response } from '@angular/http';
 import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article.model';
 import { Params, ActivatedRoute } from '@angular/router';
@@ -25,10 +24,12 @@ export class ArticleComponent implements OnInit {
 
   loadArticle(url: String) {
     this.articleService.getArticle(url)
-      .subscribe((response: Response) => {
-        this.article = response.json();
+      .then((article: Article) => {
+        this.article = article;
+      })
+      .catch(() => {
+        // TODO: if request fails show error
       });
-    // TODO: if request fails show error
   }
 
 }
