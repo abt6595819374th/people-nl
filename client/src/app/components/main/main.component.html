@@ -1,3 +1,19 @@
-<h1>
+<h1 class="title">
   {{title}}
 </h1>
+<div class="main-wrapper">
+  <div *ngFor="let article of articles" class="article-col">
+    <div class="article-tile-border-1">
+      <div class="article-tile-border-5">
+        <div class="article-tile-border-6">
+          <div class="article-tile">
+            <div [style.background-image]="'url(' + article.image + ')'" class="article-tile_image"></div>
+            <a routerLink="/article/{{article.url}}" class="article-tile_title">
+              {{article.title}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

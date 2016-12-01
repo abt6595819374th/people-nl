@@ -16,3 +16,20 @@ exports.getArticle = function(url) {
         });
     });
 };
+
+exports.getArticles = () => {
+  return MongoClient.connect(dbUrl)
+    .then(db => {
+      return db.collection('articles')
+        .find()
+        .toArray()
+        .then(articles => {
+          db.close();
+          return articles;
+        })
+        .catch(err => {
+          db.close();
+          return err;
+        });
+    });
+};

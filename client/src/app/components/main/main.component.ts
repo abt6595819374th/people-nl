@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from '../../services/article.service';
+import { Article } from '../../models/article.model';
 
 @Component({
   selector: 'app-main',
@@ -6,11 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  title = 'PPLNL';
+  title = 'ANYA ASKS PEOPLE';
+  private articles: Article[];
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
+    this.articleService.getAllArticles()
+      .then((articles: Article[]) => {
+        this.articles = articles;
+      })
+      .catch(() => {
+        // TODO: if request fails show error
+      });
   }
 
 }

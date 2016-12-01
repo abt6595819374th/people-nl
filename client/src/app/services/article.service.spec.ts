@@ -12,6 +12,11 @@ describe('Service: Article', () => {
   mockArticle.title = 'Cow';
   mockArticle.text = 'mooo';
 
+  let mockArticles: Article[] = [
+    mockArticle,
+    mockArticle
+  ];
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
@@ -22,7 +27,13 @@ describe('Service: Article', () => {
           provide: Http,
           useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
             backendInstance.connections.subscribe( c => {
-              if (c.request.url === '/api/article/cow-says') {
+              if (c.request.url === '/api/article/') {
+                let res = new Response( new ResponseOptions({
+                  body: JSON.stringify(mockArticles)
+                }));
+
+                c.mockRespond(res);
+              } else if (c.request.url === '/api/article/cow-says') {
                 let res = new Response( new ResponseOptions({
                   body: JSON.stringify(mockArticle)
                 }));
@@ -64,7 +75,7 @@ describe('Service: Article', () => {
       }
     );
 
-    it('should ', (done) => {
+    it('should return 500 error', (done) => {
       service.getArticle('cow-says--emulate-500')
         .catch((error) => {
           expect(error.status).toBe(500);
@@ -73,7 +84,7 @@ describe('Service: Article', () => {
       }
     );
 
-    it('should ', (done) => {
+    it('should return error message', (done) => {
       service.getArticle('cow-says--emulate-exception')
         .catch((error: Error) => {
           expect(error.message).toBe('Emulated unexpected error');
@@ -81,6 +92,35 @@ describe('Service: Article', () => {
         });
       }
     );
+  });
+
+  describe('getArticles()', () => {
+    it('should load requested article', (done) => {
+      service.getAllArticles()
+        .then((data: Article[]) => {
+          expect(data[0].title).toBe('Cow');
+          done();
+        });
+      }
+    );
+/*
+    it('should return 500 error', (done) => {
+      service.getAllArticles()
+        .catch((error) => {
+          expect(error.status).toBe(500);
+          done();
+        });
+      }
+    );
+
+    it('should return error message', (done) => {
+      service.getAllArticles('cow-says--emulate-exception')
+        .catch((error: Error) => {
+          expect(error.message).toBe('Emulated unexpected error');
+          done();
+        });
+      }
+    );*/
   });
 
 });

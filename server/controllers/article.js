@@ -3,6 +3,7 @@ var router = express.Router();
 var Article = require('../models/article-model');
 
 router.get('/:url', function (req, res) {
+  console.log('/:url');
   Article.getArticle(req.params.url)
     .then(article => {
       if(!article) {
@@ -15,5 +16,16 @@ router.get('/:url', function (req, res) {
       res.status(500).send(err);
     });
 });
+
+router.get('/', (req, res) => {
+  Article.getArticles()
+    .then(articles => {
+      res.send(articles);
+    })
+    .catch(err => {
+      res.status(500).send({err: err.toString()});
+    });
+});
+
 
 module.exports = router;
