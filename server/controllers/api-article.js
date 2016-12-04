@@ -3,7 +3,6 @@ var router = express.Router();
 var Article = require('../models/article-model');
 
 router.get('/:url', function (req, res) {
-  console.log('/:url');
   Article.getArticle(req.params.url)
     .then(article => {
       if(!article) {

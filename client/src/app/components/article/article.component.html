@@ -1,6 +1,7 @@
-<div *ngIf="article">
+<div *ngIf="article" class="article">
   <h1>
     {{article.title}}
   </h1>
+  <img [src]="article.image" class="article_image">
   <div class="text" [innerHTML]="article.text"></div>
 </div>

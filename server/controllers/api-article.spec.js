@@ -1,4 +1,4 @@
-const controller = require('./article');
+const controller = require('./api-article');
 const httpMocks = require('node-mocks-http');
 
 const chai = require('chai');
