@@ -6,9 +6,6 @@ router.use('/api/article', require('./api-article'));
 
 router.use('/article', require('./view-article'));
 
-router.get('/', function (req, res) {
-  res.render('index');
-});
-
+router.get('/', require('./view-index'));
 
 module.exports = router;

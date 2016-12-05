@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 
-router.get('/:url', function (req, res) {
+router.get('/', function (req, res) {
   'use strict';
 
-  http.get('http://localhost:3000/api/article/' + req.params.url, (apiRes) => {
+  http.get('http://localhost:3000/api/article/', (apiRes) => {
     // TODO: refactor into a service
     const statusCode = apiRes.statusCode;
     const contentType = apiRes.headers['content-type'];
@@ -19,7 +19,6 @@ router.get('/:url', function (req, res) {
         `Expected application/json but received ${contentType}`);
     }
     if (error) {
-      console.log(error.message);
       // consume response data to free up memory
       apiRes.resume();
       res.render('error', {message: error.message});
@@ -33,7 +32,7 @@ router.get('/:url', function (req, res) {
       try {
         let parsedData = JSON.parse(rawData);
         console.log(parsedData);
-        res.render('article', parsedData);
+        res.render('index', {articles: parsedData});
       } catch (e) {
         console.log(e.message);
       }
