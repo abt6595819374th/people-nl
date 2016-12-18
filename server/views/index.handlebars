@@ -1,12 +1,17 @@
 <head>
   <meta charset="UTF-8">
+  <base href="/">
   <title>Title 1</title>
+  <link href="//localhost:4200/assets/basic.css" rel="stylesheet">
   {{!-- TODO: add meta tags --}}
 </head>
 <body>
-  {{#each articles}}
-    <img src="{{this.image}}">
-    <h2><a href="/article/{{this.url}}">{{this.title}}</a></h2>
-  {{/each}}
-  
+  <app-root>
+    <div class="overlay">Loading</div>
+    {{#each articles}}
+      <img src="{{this.image}}">
+      <h2><a href="/article/{{this.url}}">{{this.title}}</a></h2>
+    {{/each}}
+  </app-root>
+
 </body>

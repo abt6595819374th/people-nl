@@ -1,0 +1,11 @@
+/* Basic css for a page before Angular starts bootstraps the app */
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  text-align: center;
+  line-height: 100vh;
+}
