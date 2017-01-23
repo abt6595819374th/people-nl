@@ -1,5 +1,46 @@
+/* TODO: how this file is included*/
+@import './assets/fonts.css';
+@import './assets/bootstrap.css';
+
+html {
+  background: #fef3d5;
+}
 body {
   margin: 0;
   padding: 0;
-  font: 16px Arial, sans-serif;
+  font: 16px/1.5em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+  color: #2c2c2c;
+}
+
+.header {
+  padding: 10px 40px;
+  position: relative;
+  background: #fff;
+}
+
+.logo {
+  font-size: 50px;
+  line-height: 1em;
+  font-family: 'Amatic SC', cursive;
+  text-decoration: none;
+  color: #2c2c2c;
+  text-align: center;
+  float: left;
+}
+.menu {
+  position: absolute;
+  right: 15px;
+  bottom: 7px;
+  line-height: 1em;
+}
+
+.menu_link {
+  color: #2c2c2c;
+  text-decoration: none;
+  /*text-transform: uppercase;*/
+}
+.menu_link:hover {
+  /*text-decoration: underline;*/
+  color: #ff6c38;
 }
