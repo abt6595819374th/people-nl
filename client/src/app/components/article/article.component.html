@@ -1,7 +1,30 @@
-<div *ngIf="article" class="article">
-  <h1>
-    {{article.title}}
-  </h1>
-  <img [src]="article.image" class="article_image">
-  <div class="text" [innerHTML]="article.text"></div>
+<div *ngIf="article" class="article-wrapper">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="article_header container-fluid">
+        <div class="row">
+          <div class="col-xs-7 article_image" [style.background-image]="'url(' + article.image + ')'"></div>
+          <!--<img [src]="article.image" class="article_image">-->
+          <div class="col-xs-5 article_header_info">
+            <div class="article_header_text">
+              <h1 class="title">
+                {{article.title}}
+              </h1>
+              <div class="quote">
+                <div class="quote_open">&ldquo;</div>
+                je jouw geluk niet van andere mensen af moet laten hangen&nbsp;<div class="quote_close">&rdquo;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="article container-fluid">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="text" [innerHTML]="article.text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

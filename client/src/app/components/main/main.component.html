@@ -1,8 +1,37 @@
-<h1 class="title">
-  {{title}}
-</h1>
-<div class="main-wrapper">
-  <div *ngFor="let article of articles" class="article-col">
+<div class="main-wrapper container-fluid">
+  <div class="row featured-article" *ngIf="articles">
+    <div class="col-sm-8">
+      <div [style.background-image]="'url(' + articles[0].image + ')'" class="featured-article_image"></div>
+    </div>
+    <div class="col-sm-4 featured-article_info">
+      <div class="featured-article_info-content">
+        <div class="featured-article_title">
+          {{articles[0].title}}
+        </div>
+
+        <!--<div class="article_header_text">
+          <h1 class="title">
+            {{articles[0].title}}
+          </h1>
+          <div class="quote">
+            <div class="quote_open">&ldquo;</div>
+            je jouw geluk niet van andere mensen af moet laten hangen&nbsp;<div class="quote_close">&rdquo;</div>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 col-sm-4" *ngFor="let article of articles">
+      <div class="article-tile">
+        <div [style.background-image]="'url(' + article.image + ')'" class="article-tile_image"></div>
+        <a routerLink="/article/{{article.url}}" class="article-tile_title">
+          {{article.title}}
+        </a>
+      </div>
+    </div>
+  </div>
+  <!--<div *ngFor="let article of articles" class="article-col">
     <div class="article-tile-border-1">
       <div class="article-tile-border-5">
         <div class="article-tile-border-6">
@@ -15,5 +44,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
