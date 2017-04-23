@@ -1,6 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var http = require('http');
+const express = require('express');
+const router = express.Router();
+const http = require('http');
+const config = require('config');
+
+const staticFiles = config.get('staticFiles');
 
 router.get('/', function (req, res) {
   'use strict';
@@ -32,7 +35,7 @@ router.get('/', function (req, res) {
       try {
         let parsedData = JSON.parse(rawData);
         console.log(parsedData);
-        res.render('index', {articles: parsedData});
+        res.render('index', {articles: parsedData, staticFilesUrl: staticFiles.url});
       } catch (e) {
         console.log(e.message);
       }

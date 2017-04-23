@@ -1,5 +1,8 @@
-var MongoClient = require('mongodb').MongoClient;
-var dbUrl = 'mongodb://localhost:27017/people-nl';
+const MongoClient = require('mongodb').MongoClient;
+const config = require('config');
+
+const dbConfig = config.get('dbConfig');
+const dbUrl = `mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.dbName}`;
 
 exports.getArticle = function(url) {
   return MongoClient.connect(dbUrl)

@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var http = require('http');
+const config = require('config');
+
+const staticFiles = config.get('staticFiles');
 
 router.get('/:url', function (req, res) {
   'use strict';
@@ -32,6 +35,7 @@ router.get('/:url', function (req, res) {
     apiRes.on('end', () => {
       try {
         let parsedData = JSON.parse(rawData);
+        parsedData.staticFilesUrl = staticFiles.url;
         console.log(parsedData);
         res.render('article', parsedData);
       } catch (e) {

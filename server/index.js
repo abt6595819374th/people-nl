@@ -9,6 +9,7 @@ app.engine('handlebars', exphbs({defaultLayout: path.join(__dirname, '/views/lay
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, '/views'));
 
+// TODO: set up port in config file
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });

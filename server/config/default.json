@@ -1,0 +1,10 @@
+{
+  "dbConfig": {
+    "host": "localhost",
+    "port": 27017,
+    "dbName": "people-nl"
+  },
+  "staticFiles": {
+    "url": "//localhost:4200"
+  }
+}
