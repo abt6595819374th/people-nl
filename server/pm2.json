@@ -4,7 +4,7 @@
     "script"      : "index.js",
     "watch"       : false,
     "merge_logs"  : false,
-    "cwd"         : "./",
+    "cwd"         : "./server",
     "env": {
       "NODE_ENV": "production"
     }
