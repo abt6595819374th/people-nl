@@ -1,0 +1,12 @@
+{
+  "apps" : [{
+    "name"        : "people-nl",
+    "script"      : "index.js",
+    "watch"       : false,
+    "merge_logs"  : false,
+    "cwd"         : "./",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }]
+}

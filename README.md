@@ -35,3 +35,9 @@
 
     $ cd client
     $ ng lint
+
+## How to deploy server side
+1. $ cd people-nl
+2. $ git pull
+3. $ npm install --production # (If dependencies have changed)
+4. $ pm2 restart people-nl
